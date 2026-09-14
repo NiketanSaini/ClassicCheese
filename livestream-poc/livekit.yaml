@@ -1,0 +1,15 @@
+port: 7880
+rtc:
+  tcp_port: 7881
+  port_range_start: 51000
+  port_range_end: 51100
+  use_external_ip: false
+  # Without this, LiveKit advertises the container's internal Docker IP as
+  # the ICE candidate address, which only this machine can reach — that's
+  # why comments (plain HTTP/SSE through the mapped port) work over LAN but
+  # WebRTC media doesn't. Set this to whichever LAN IP viewers use to reach
+  # this machine; update it if that IP changes (different network, etc).
+  node_ip: 10.10.0.41
+
+keys:
+  devkey: 864e122d8552f2fe61b377de1f1ab6e5c99a987ed106c984

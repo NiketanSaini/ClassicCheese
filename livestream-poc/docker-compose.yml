@@ -1,0 +1,12 @@
+services:
+  livekit:
+    image: livekit/livekit-server:latest
+    container_name: livestream-poc-livekit
+    command: --config /etc/livekit.yaml
+    restart: unless-stopped
+    ports:
+      - "7880:7880" # HTTP/WebSocket signaling
+      - "7881:7881" # RTC over TCP (fallback when UDP is blocked)
+      - "51000-51100:51000-51100/udp" # ICE candidate range
+    volumes:
+      - ./livekit.yaml:/etc/livekit.yaml:ro
